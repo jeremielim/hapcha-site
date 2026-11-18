@@ -1,14 +1,40 @@
-:root { color-scheme: light dark; --ink: #1a1a1a; --muted: #5c5c5c; --paper: #fbfaf7; --accent: #2f6fe4; }
-@media (prefers-color-scheme: dark) { :root { --ink: #f2f2f2; --muted: #a8a8a8; --paper: #141414; --accent: #6f9bff; } }
+/* Color tokens. Source: Figma "hapcha", collections "Hapcha · palette" and "Hapcha · theme". */
+/* Tier 1: palette steps. Never use these outside this block. */
+:root {
+  color-scheme: light dark;
+  --blue-50: #eff4fc;
+  --blue-400: #4c87f8;
+  --blue-500: #2165ec;
+  --blue-950: #191e27;
+  /* iOS 27 library (Color Scheme): web copies, keep in sync. */
+  --ios-labels-primary-light: #000000;
+  --ios-labels-primary-dark: #ffffff;
+  --ios-labels-secondary-light: rgb(60 60 67 / 0.6);
+  --ios-labels-secondary-dark: rgb(235 235 245 / 0.7);
+
+  /* Tier 2: theme variables, same names as Figma. Use only these. */
+  --color-paper-bg: var(--blue-50);
+  --color-text-primary: var(--ios-labels-primary-light);
+  --color-text-secondary: var(--ios-labels-secondary-light);
+  --color-accent-text: var(--blue-500);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper-bg: var(--blue-950);
+    --color-text-primary: var(--ios-labels-primary-dark);
+    --color-text-secondary: var(--ios-labels-secondary-dark);
+    --color-accent-text: var(--blue-400);
+  }
+}
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 ui-rounded, -apple-system, BlinkMacSystemFont, "SF Pro Rounded", system-ui, sans-serif; }
+body { margin: 0; background: var(--color-paper-bg); color: var(--color-text-primary); font: 17px/1.6 ui-rounded, -apple-system, BlinkMacSystemFont, "SF Pro Rounded", system-ui, sans-serif; }
 main { max-width: 640px; margin: 0 auto; padding: 48px 24px 64px; }
 nav { display: flex; gap: 20px; margin-bottom: 40px; font-weight: 600; }
-nav a:first-child { margin-right: auto; font-size: 20px; color: var(--ink); }
-a { color: var(--accent); text-decoration: none; }
+nav a:first-child { margin-right: auto; font-size: 20px; color: var(--color-text-primary); }
+a { color: var(--color-accent-text); text-decoration: none; }
 a:hover { text-decoration: underline; }
 h1 { font-size: 34px; line-height: 1.2; margin: 0 0 8px; }
 h2 { font-size: 22px; margin: 40px 0 8px; }
-.muted { color: var(--muted); }
+.muted { color: var(--color-text-secondary); }
 li { margin: 4px 0; }
-footer { margin-top: 64px; font-size: 14px; color: var(--muted); }
+footer { margin-top: 64px; font-size: 14px; color: var(--color-text-secondary); }
